@@ -4,7 +4,6 @@
     "keywords": ["cache", "caching"],
     "license": "MIT",
     "type": "library",
-    "version": "1.1",
     "authors": [
       {
           "name": "Semen Alekseev",
