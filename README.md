@@ -1,10 +1,8 @@
 Sura Cache
 =============
 
-[![Tests](https://github.com/sura/cache/workflows/Tests/badge.svg?branch=master)](https://github.com/sura/cache/actions)
-[![Coverage Status](https://coveralls.io/repos/github/sura/cache/badge.svg?branch=master)](https://coveralls.io/github/sura/cache?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/sura/cache/v/stable)](https://github.com/sura/cache/releases)
-[![License](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://github.com/sura/cache/blob/master/license.md)
+[![License](https://poser.pugx.org/sura/cache/license)](https://github.com/sura/cache/blob/master/license.md)
 
 
 Introduction
