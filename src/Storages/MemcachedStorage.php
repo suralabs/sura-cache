@@ -12,7 +12,7 @@ use Sura\Cache\Cache;
 /**
  * Memcached storage using memcached extension.
  */
-class MemcachedStorage implements Sura\Caching\Storage, Sura\Caching\BulkReader, \Sura\Cache\Storage
+class MemcachedStorage implements Sura\Cache\Storage, Sura\Cache\BulkReader
 {
     use Sura\SmartObject;
 

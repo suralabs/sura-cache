@@ -11,7 +11,7 @@ use Sura\Cache\Cache;
 /**
  * SQLite storage.
  */
-class SQLiteStorage implements Sura\Caching\Storage, Sura\Caching\BulkReader
+class SQLiteStorage implements Sura\Cache\Storage, Sura\Cache\BulkReader
 {
 	use Sura\SmartObject;
 

@@ -340,7 +340,7 @@ class FileStorage implements Sura\Cache\Storage
     #[Pure] protected function getCacheFile(string $key): string
     {
         $file = urlencode($key);
-        if ($a = strrpos($file, '%00')) { // %00 = urlencode(Sura\Caching\Cache::NAMESPACE_SEPARATOR)
+        if ($a = strrpos($file, '%00')) { // %00 = urlencode(Sura\Cache\Cache::NAMESPACE_SEPARATOR)
             $file = substr_replace($file, '/_', $a, 3);
         }
         return $this->dir . '/_' . $file;

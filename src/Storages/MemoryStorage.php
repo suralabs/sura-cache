@@ -10,7 +10,7 @@ use Sura;
 /**
  * Memory cache storage.
  */
-class MemoryStorage implements Sura\Caching\Storage
+class MemoryStorage implements Sura\Cache\Storage
 {
 	use Sura\SmartObject;
 
@@ -43,7 +43,7 @@ class MemoryStorage implements Sura\Caching\Storage
 
 	public function clean(array $conditions): void
 	{
-		if (!empty($conditions[Sura\Caching\Cache::ALL])) {
+		if (!empty($conditions[Sura\Cache\Cache::ALL])) {
 			$this->data = [];
 		}
 	}

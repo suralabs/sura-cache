@@ -8,7 +8,7 @@ use Sura;
 /**
  * Cache dummy storage.
  */
-class DevNullStorage implements Sura\Caching\Storage
+class DevNullStorage implements Sura\Cache\Storage
 {
 	use Sura\SmartObject;
 
