@@ -348,7 +348,7 @@ class FileStorage implements Sura\Cache\Storage
         flock($meta[self::HANDLE], LOCK_UN);
         fclose($meta[self::HANDLE]);
 
-        return empty($meta[self::META_SERIALIZED]) ? $data : unserialize($data);
+        return empty($meta[self::META_SERIALIZED]) ? $data : unserialize($data, $options = []);
     }
 
 
