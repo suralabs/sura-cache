@@ -383,7 +383,7 @@ class FileStorage implements Sura\Cache\Storage
         }
 
         if (!$handle) {
-            $handle = @fopen($file, 'r+'); // @ - file may not exist
+            $handle = fopen($file, 'r+'); // @ - file may not exist
         }
         if (!$handle) {
             return;
