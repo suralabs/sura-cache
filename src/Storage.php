@@ -15,29 +15,31 @@ interface Storage
      * @param string $key
      * @return mixed
      */
-	function read(string $key): mixed;
+	public function read(string $key): mixed;
 
     /**
      * Prevents item reading and writing. Lock is released by write() or remove().
      * @param string $key
      */
-	function lock(string $key): void;
+	public function lock(string $key): void;
 
-	/**
-	 * Writes item into the cache.
-	 */
-	function write(string $key, $data, array $dependencies): void;
+    /**
+     * Writes item into the cache.
+     * @param string $key
+     * @param $data
+     * @param array $dependencies
+     */
+	public function write(string $key, $data, array $dependencies): void;
 
-	/**
-	 * Removes item from the cache.
-	 */
-	function remove(string $key): void;
+    /**
+     * Removes item from the cache.
+     * @param string $key
+     */
+	public function remove(string $key): void;
 
-	/**
-	 * Removes items from the cache by conditions.
-	 */
-	function clean(array $conditions): void;
+    /**
+     * Removes items from the cache by conditions.
+     * @param array $conditions
+     */
+	public function clean(array $conditions): void;
 }
-
-
-class_exists(IStorage::class);
