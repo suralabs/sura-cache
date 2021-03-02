@@ -57,7 +57,11 @@ class FileStorage implements Sura\Cache\Storage
     /** @var array */
     private array $locks;
 
-
+    /**
+     * FileStorage constructor.
+     * @param string $dir
+     * @param Journal|null $journal
+     */
     public function __construct(string $dir, Journal $journal = null)
     {
         if (!is_dir($dir)) {
@@ -72,7 +76,10 @@ class FileStorage implements Sura\Cache\Storage
         }
     }
 
-
+    /**
+     * @param string $key
+     * @return mixed
+     */
     public function read(string $key): mixed
     {
         $meta = $this->readMetaAndLock($this->getCacheFile($key), LOCK_SH);
@@ -121,7 +128,9 @@ class FileStorage implements Sura\Cache\Storage
         return false;
     }
 
-
+    /**
+     * @param string $key
+     */
     public function lock(string $key): void
     {
         $cacheFile = $this->getCacheFile($key);
@@ -139,7 +148,11 @@ class FileStorage implements Sura\Cache\Storage
         flock($handle, LOCK_EX);
     }
 
-
+    /**
+     * @param string $key
+     * @param $data
+     * @param array $dp
+     */
     public function write(string $key, $data, array $dp): void
     {
         $meta = [
@@ -218,14 +231,18 @@ class FileStorage implements Sura\Cache\Storage
         $this->delete($cacheFile, $handle);
     }
 
-
+    /**
+     * @param string $key
+     */
     public function remove(string $key): void
     {
         unset($this->locks[$key]);
         $this->delete($this->getCacheFile($key));
     }
 
-
+    /**
+     * @param array $conditions
+     */
     public function clean(array $conditions): void
     {
         $all = !empty($conditions[Cache::ALL]);
@@ -292,6 +309,9 @@ class FileStorage implements Sura\Cache\Storage
 
     /**
      * Reads cache data from disk.
+     * @param string $file
+     * @param int $lock
+     * @return array|null
      */
     protected function readMetaAndLock(string $file, int $lock): ?array
     {
