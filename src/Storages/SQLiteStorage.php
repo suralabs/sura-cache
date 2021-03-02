@@ -58,7 +58,7 @@ class SQLiteStorage implements Sura\Cache\Storage, Sura\Cache\BulkReader
 		if ($row['slide'] !== null) {
 			$this->pdo->prepare('UPDATE cache SET expire = ? + slide WHERE key=?')->execute([time(), $key]);
 		}
-		return unserialize($row['data']);
+		return unserialize($row['data'], $options = []);
 	}
 
 
@@ -72,7 +72,7 @@ class SQLiteStorage implements Sura\Cache\Storage, Sura\Cache\BulkReader
 			if ($row['slide'] !== null) {
 				$updateSlide[] = $row['key'];
 			}
-			$result[$row['key']] = unserialize($row['data']);
+			$result[$row['key']] = unserialize($row['data'], $options = []);
 		}
 		if (!empty($updateSlide)) {
 			$stmt = $this->pdo->prepare('UPDATE cache SET expire = ? + slide WHERE key IN(?' . str_repeat(',?', count($updateSlide) - 1) . ')');

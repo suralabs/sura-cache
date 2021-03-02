@@ -171,7 +171,7 @@ class Cache
      * @return mixed  value itself
      * @throws \Throwable
      */
-    public function save($key, $data, array $dependencies = null)
+    public function save($key, $data, array $dependencies = null): mixed
     {
         $key = $this->generateKey($key);
 
@@ -392,6 +392,6 @@ class Cache
      */
     private static function checkFile(string $file, ?int $time): bool
     {
-        return @filemtime($file) == $time; // @ - stat may fail
+        return filemtime($file) == $time; // @ - stat may fail
     }
 }

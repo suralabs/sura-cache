@@ -65,7 +65,7 @@ class FileStorage implements Sura\Cache\Storage
     public function __construct(string $dir, Journal $journal = null)
     {
         if (!is_dir($dir)) {
-            throw new Sura\DirectoryNotFoundException("Directory '$dir' not found.");
+            throw new Sura\Cache\Exception\DirectoryNotFoundException("Directory '$dir' not found.");
         }
 
         $this->dir = $dir;

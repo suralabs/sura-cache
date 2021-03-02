@@ -15,8 +15,5 @@ interface BulkReader
      * @param array $keys
      * @return array key => value pairs, missing items are omitted
      */
-	function bulkRead(array $keys): array;
+	public function bulkRead(array $keys): array;
 }
-
-
-class_exists(IBulkReader::class);

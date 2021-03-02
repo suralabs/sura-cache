@@ -25,7 +25,7 @@ class SQLiteJournal implements Journal
 	public function __construct(string $path)
 	{
 		if (!extension_loaded('pdo_sqlite')) {
-			throw new Sura\NotSupportedException('SQLiteJournal requires PHP extension pdo_sqlite which is not loaded.');
+			throw new Sura\Cache\Exception\NotSupportedException('SQLiteJournal requires PHP extension pdo_sqlite which is not loaded.');
 		}
 		$this->path = $path;
 	}

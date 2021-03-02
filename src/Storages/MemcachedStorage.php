@@ -49,7 +49,7 @@ class MemcachedStorage implements Sura\Cache\Storage, Sura\Cache\BulkReader
     )
     {
         if (!static::isAvailable()) {
-            throw new Sura\NotSupportedException("PHP extension 'memcached' is not loaded.");
+            throw new Sura\Cache\Exception\NotSupportedException("PHP extension 'memcached' is not loaded.");
         }
 
         $this->prefix = $prefix;
@@ -65,7 +65,7 @@ class MemcachedStorage implements Sura\Cache\Storage, Sura\Cache\BulkReader
     {
         if (@$this->memcached->addServer($host, $port, 1) === false) { // @ is escalated to exception
             $error = error_get_last();
-            throw new Sura\InvalidStateException("Memcached::addServer(): $error[message].");
+            throw new Sura\Cache\Exception\InvalidStateException("Memcached::addServer(): $error[message].");
         }
     }
 
@@ -141,7 +141,7 @@ class MemcachedStorage implements Sura\Cache\Storage, Sura\Cache\BulkReader
     public function write(string $key, $data, array $dp): void
     {
         if (isset($dp[Cache::ITEMS])) {
-            throw new Sura\NotSupportedException('Dependent items are not supported by MemcachedStorage.');
+            throw new Sura\Cache\Exception\NotSupportedException('Dependent items are not supported by MemcachedStorage.');
         }
 
         $key = urlencode($this->prefix . $key);
@@ -163,7 +163,7 @@ class MemcachedStorage implements Sura\Cache\Storage, Sura\Cache\BulkReader
 
         if (isset($dp[Cache::TAGS]) || isset($dp[Cache::PRIORITY])) {
             if (!$this->journal) {
-                throw new Sura\InvalidStateException('CacheJournal has not been provided.');
+                throw new Sura\Cache\Exception\InvalidStateException('CacheJournal has not been provided.');
             }
             $this->journal->write($key, $dp);
         }
