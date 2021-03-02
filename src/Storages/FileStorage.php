@@ -325,7 +325,7 @@ class FileStorage implements Sura\Cache\Storage
         $size = (int)stream_get_contents($handle, self::META_HEADER_LEN);
         if ($size) {
             $meta = stream_get_contents($handle, $size, self::META_HEADER_LEN);
-            $meta = unserialize($meta);
+            $meta = unserialize($meta, $options = []);
             $meta[self::FILE] = $file;
             $meta[self::HANDLE] = $handle;
             return $meta;
