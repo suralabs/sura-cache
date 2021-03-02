@@ -374,7 +374,7 @@ class FileStorage implements Sura\Cache\Storage
      */
     private static function delete(string $file, $handle = null): void
     {
-        if (@unlink($file)) { // @ - file may not already exist
+        if (unlink($file)) { // @ - file may not already exist
             if ($handle) {
                 flock($handle, LOCK_UN);
                 fclose($handle);
@@ -393,6 +393,6 @@ class FileStorage implements Sura\Cache\Storage
         ftruncate($handle, 0);
         flock($handle, LOCK_UN);
         fclose($handle);
-        @unlink($file); // @ - file may not already exist
+        unlink($file); // @ - file may not already exist
     }
 }
