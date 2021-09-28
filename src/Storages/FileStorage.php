@@ -45,9 +45,6 @@ class FileStorage implements Sura\Cache\Storage
     /** @var float  probability that the clean() routine is started */
     public static float $gcProbability = 0.001;
 
-    /** @deprecated */
-    public static $useDirectories = true;
-
     /** @var string */
     private string $dir;
 
@@ -135,9 +132,7 @@ class FileStorage implements Sura\Cache\Storage
     {
         $cacheFile = $this->getCacheFile($key);
         if (!is_dir($dir = dirname($cacheFile))) {
-            if (!mkdir($dir) && !is_dir($dir)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));
-            } // @ - directory may already exist
+            @mkdir($dir); // @ - directory may already exist
         }
         $handle = fopen($cacheFile, 'c+b');
         if (!$handle) {
@@ -294,7 +289,7 @@ class FileStorage implements Sura\Cache\Storage
                 foreach (Sura\Utils\Finder::findFiles('_*')->in($dir) as $entry) {
                     $this->delete((string)$entry);
                 }
-                @rmdir($dir); // may already contain new files
+                rmdir($dir); // may already contain new files
             }
         }
 
