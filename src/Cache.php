@@ -188,6 +188,7 @@ class Cache
 
         if ($data === null) {
             $this->storage->remove($key);
+            return 'null';
         } else {
             $dependencies = $this->completeDependencies($dependencies);
             if (isset($dependencies[self::EXPIRATION]) && $dependencies[self::EXPIRATION] <= 0) {
